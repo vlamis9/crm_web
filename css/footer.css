@@ -1,0 +1,12 @@
+.footer {    
+    display: flex;
+    justify-content: space-between;    
+}
+
+.hr-last {    
+    margin: 33px 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}

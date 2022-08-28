@@ -1,0 +1,104 @@
+.span_inner {
+    background-image: linear-gradient(to right, #e6f8eecc, #d6d5f3cc, #c3e9f5cc);
+    border-radius: 1px;
+    padding: 1px 3px;
+  }
+
+  .case_form {
+    border: 1px solid rgb(84, 55, 165);
+    background: #a5b2b9;   
+    display: grid; 
+    grid-template-areas: 
+            'contmaininfocase contcontractcase'
+            'contmainpointcase contrulesoflawcase'
+            'contcasepartscase contnotescase'
+            'buttonscase buttonscase';
+    gap: 0px;
+    height: 100%;  
+    border-radius: 5px;
+     -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+     -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+     box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+
+     height: fit-content;
+     width: fit-content;
+ }
+   
+.cont_main_info_case {
+    grid-area: contmaininfocase;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid rgb(84, 55, 165);
+}
+.cont_mainpoint_case {
+    grid-area: contmainpointcase;
+    display: flex;    
+ }
+ .cont_rulesoflaw_case {
+     grid-area: contrulesoflawcase;
+     display: flex;    
+ }
+.cont_caseparts_case {
+    grid-area: contcasepartscase;
+    display: flex;
+ }
+ .buttons_case {
+     grid-area: buttonscase;    
+ }
+.cont_contract_case {
+    grid-area: contcontractcase; 
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid rgb(84, 55, 165);   
+ }
+.cont_notes_case {
+    grid-area: contnotescase;
+    display: flex; 
+ }
+.NOTES {
+    flex-grow: 1;
+}
+.RULESOFLAW {
+    flex-grow: 1;
+}
+.MAINPOINT {
+    flex-grow: 1;
+}
+.CASEPARTS {
+    flex-grow: 1;
+}
+
+span.span_inner.cat_client_text{
+    height: fit-content;    
+}
+span.span_inner.case_exist{
+    height: fit-content;
+}
+
+.btn-del-case{
+    text-indent:-9999px;
+    background: transparent url(../img/delCl.png) no-repeat center top;
+    width:  33px;  
+    height: 33px; 
+    margin: 0;
+    padding:0;
+    border: 0;
+    cursor:pointer;
+ }
+ .btn-edit-case{
+    text-indent:-9999px;
+    background: transparent url(../img/editCl.png) no-repeat center top;
+    width:  33px;  
+    height: 33px; 
+    margin: 0;
+    padding:0;
+    border: 0;
+    cursor:pointer;
+ }
+
+
+
+
+
