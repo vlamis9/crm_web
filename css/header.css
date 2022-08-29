@@ -1,22 +1,101 @@
 .header {
     display: flex;
-    justify-content: space-between;
-    height: 1vh;
-    margin: 1vh;
+    flex-direction: column;
+    justify-content: space-between; 
+    flex: 0 0 auto;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(90deg, #cfecd0, #ffc5ca);
+
 }
 .hr_header {    
-    margin: 25px 0;
-    padding: 0;
-
+    margin: 1% 0; 
     border: none;
     border-top: 1px solid #333;
     box-shadow: 0 10px 10px -10px #8c8b8b inset;
 }
 span {
-    background-image: linear-gradient(to right, #F27121cc, #E94057cc, #8A2387cc);
     border-radius: 6px;
-    padding: 3px 6px;
-  }
+    display: inline-block;
+    text-align: center;
+    font-size: 24px;
+    color: #0f0527;
+    text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);
+}  
+
+.heading{
+    display: grid;
+    grid-template-areas: 'logocont tomaincont authcont';
+    grid-template-columns: 1fr 1fr 1fr;
+    
+}
+.to_main_cont{
+    grid-area: tomaincont;
+    display: flex;
+}
+.to_main_btn{
+    text-indent:-9999px;
+    background: transparent url(../img/home.png) no-repeat center top;
+    width:  50px;  
+    height: 50px; 
+    margin: 0;
+    padding:0;
+    border: 0;
+    cursor:pointer;
+    margin: auto;
+ }
+
+.logo_cont {
+    grid-area: logocont;
+    margin: auto;
+}
+.auth_cont {
+    grid-area: authcont;
+    display: flex;
+}
+.auth_form{   
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin: auto auto;  
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px black; 
+    margin: auto;
+    height: 100%;
+    background-color: rgb(166, 206, 193);
+}
+.loglabel, .passlabel{
+    text-shadow: 0 0 0 rgb(11, 46, 245);  
+}
+.auth_but_btn{
+    text-indent:-9999px;
+    background: transparent url(../img/login.png) no-repeat center top;
+    width:  33px;  
+    height: 33px;
+    margin: 0;
+    padding:0;
+    border: 0;
+    cursor:pointer;
+ } 
+ 
+.leave_but{
+    text-indent:-9999px;
+    background: transparent url(../img/logout.png) no-repeat center top;
+    width:  33px;  
+    height: 33px;
+    margin: auto;
+    padding:0;
+    border: 0;
+    cursor:pointer;
+ }  
+ .auth_form_logout{   
+    display: flex;
+    box-shadow: unset;
+    height: unset;
+    background-color: unset;
+}
+
 
   
 

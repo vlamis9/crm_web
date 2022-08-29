@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -9,25 +10,24 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'x911753i_db');
 define('DB_USER', 'x911753i_db');
 define('DB_PASS', 'cznweb2022$'); 
-$db = DB_NAME;
 
 
-define('SQL_ARR', array(
-    "strUsers"  => "CREATE TABLE IF NOT EXISTS $db.`users` 
+/* define('SQL_ARR', array(
+    "strUsers"  => "CREATE TABLE IF NOT EXISTS `MyDB`.`users` 
                  ( `ID_USER` INT NOT NULL AUTO_INCREMENT, 
                  `LOGIN` TINYTEXT NOT NULL ,
                  `PASS` TINYTEXT NOT NULL ,
                  `NAME` TINYTEXT NOT NULL , 
                  `EMAIL` TINYTEXT NOT NULL ,                   
                  PRIMARY KEY (`ID_USER`)) ENGINE = InnoDB;",
-    "strMix"  => "CREATE TABLE IF NOT EXISTS $db.`mixClients` 
+    "strMix"  => "CREATE TABLE IF NOT EXISTS `MyDB`.`mixClients` 
                  ( `ID_MIX` INT NOT NULL AUTO_INCREMENT, `ID_USERCL` INT NOT NULL, 
                  `CLIENT_TYPE` INT NOT NULL ,                    
                  PRIMARY KEY (`ID_MIX`),
                  CONSTRAINT `link_mixClients_users` 
                  FOREIGN KEY (`ID_USERCL`) REFERENCES `users`(`ID_USER`) 
                  ON DELETE NO ACTION ON UPDATE NO ACTION) ENGINE = InnoDB;",
-    "strFiz"  => "CREATE TABLE IF NOT EXISTS $db.`fizClient` 
+    "strFiz"  => "CREATE TABLE IF NOT EXISTS `MyDB`.`fizClient` 
                  ( `ID_FIZ` INT NOT NULL , `SURNAME` TINYTEXT NULL , `NAME` TINYTEXT NULL , 
                  `MIDDLE` TINYTEXT NULL , `BIRTHDAY` DATE NULL , `TELM` TINYTEXT NULL , 
                  `EMAIL` TINYTEXT NULL , `PASSER` INT NULL , `PASNUM` INT NULL , 
@@ -40,7 +40,7 @@ define('SQL_ARR', array(
                  FOREIGN KEY (`ID_FIZ`) REFERENCES `mixClients`(`ID_MIX`) 
                  ON DELETE NO ACTION ON UPDATE NO ACTION, 
                  CONSTRAINT unique_id_fiz UNIQUE (ID_FIZ)) ENGINE = InnoDB;",
-    "strYur"  => "CREATE TABLE IF NOT EXISTS $db.`yurClient` 
+    "strYur"  => "CREATE TABLE IF NOT EXISTS `MyDB`.`yurClient` 
                  ( `ID_YUR` INT NOT NULL , `OPF` TINYTEXT NULL , `COMPANY` TINYTEXT NULL , 
                  `OGRN` INT NULL , `INN` INT NULL , `TEL` TINYTEXT NULL , 
                  `EMAIL` TINYTEXT NULL , `DELEGATE` TINYTEXT NULL , `SURDEL` TINYTEXT NULL , 
@@ -54,7 +54,7 @@ define('SQL_ARR', array(
                  FOREIGN KEY (`ID_YUR`) REFERENCES `mixClients`(`ID_MIX`) 
                  ON DELETE NO ACTION ON UPDATE NO ACTION, 
                  CONSTRAINT unique_id_yur UNIQUE (ID_YUR)) ENGINE = InnoDB;",
-    "strCase" => "CREATE TABLE IF NOT EXISTS $db.`casesTable` 
+    "strCase" => "CREATE TABLE IF NOT EXISTS `MyDB`.`casesTable` 
                   ( `ID_CASE` INT NOT NULL AUTO_INCREMENT, `ID_CLIENT` INT NOT NULL , 
                   `CLIENTSTATUS` INT NOT NULL , `CASECAT` INT NOT NULL , 
                   `CASEDATE` DATE NULL , `CONTRACTNUM` TINYTEXT NULL , 
@@ -66,7 +66,7 @@ define('SQL_ARR', array(
                   FOREIGN KEY (`ID_CLIENT`) REFERENCES `mixClients`(`ID_MIX`) 
                   ON DELETE CASCADE) ENGINE = InnoDB;",
     ) 
-);
+); */
 define('DB_CHAR', 'utf8');
 
 class DB

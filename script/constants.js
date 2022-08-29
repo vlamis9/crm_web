@@ -277,7 +277,7 @@ const caseFormCreateStr = `<div class="main_cont_case">
                                     <textarea name="NOTES" cols="35" rows="10" class="NOTES"></textarea>
                                 </fieldset>
                                 <fieldset class="buttons_case"> 
-                                    <input type="submit" class="submit_case" name="submit_case" value="Сохранить"/>                                     
+                                    <input type="submit" class="btn-submit" name="btn-submit" value="Сохранить"/>                                     
                                     <button class="cancel_case btn" name="cancel_case" onClick="window.location.href='cases.php';">"Отмена"</button>                                    
                                 </fieldset>
                             </form>

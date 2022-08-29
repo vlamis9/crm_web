@@ -1,11 +1,21 @@
 .footer {    
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
+    flex-direction: column; 
+    flex: 0 0 auto;    
+    margin-top: auto;
+    background: linear-gradient(90deg, #cfecd0, #ffc5ca);
+
+    position: sticky;
+    bottom: 0; 
+}
+.cont-footer{
+    display: flex;
+    justify-content: space-around;
 }
 
 .hr-last {    
-    margin: 33px 0;
-    padding: 0;
+    margin: 1% 0;
     border: none;
     border-top: 1px solid #333;
     box-shadow: 0 10px 10px -10px #8c8b8b inset;

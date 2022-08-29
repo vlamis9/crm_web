@@ -17,7 +17,7 @@ require_once('db.php');
 
 ?>
 <title>Клиенты</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style.css" type="text/css"/> 
 <link rel="stylesheet" href="css/clients.css">
 <link rel="stylesheet" href="css/modal.css" type="text/css"/> 
@@ -163,11 +163,7 @@ function updateClientsFizView($searchResArrIds = null){
     ?>            
     <script>    
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('searchClBut').name = 'search-fizClient';
-            const thisTable = <?=json_encode(".$table")?>;                
-            let el = document.querySelector(thisTable);            
-            let target = document.querySelector('.hr-before-view');            
-            target.parentNode.insertBefore(el, target.nextSibling);
+            document.getElementById('searchClBut').name = 'search-fizClient';        
         });
     </script>
     <?php
@@ -263,11 +259,7 @@ function updateClientsYurView($searchResArrIds = null){
     ?>            
     <script>    
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('searchClBut').name = 'search-yurClient';
-            const thisTable = <?=json_encode(".$table")?>;                
-            let el = document.querySelector(thisTable);            
-            let target = document.querySelector('.hr-before-view');            
-            target.parentNode.insertBefore(el, target.nextSibling);
+            document.getElementById('searchClBut').name = 'search-yurClient';            
         });
     </script>
     <?php
@@ -394,7 +386,7 @@ function createOrEditClient(string $table, int $idClient = null){
             document.addEventListener('DOMContentLoaded', function () {
                 const tableName = <?=json_encode(".$table")?>;                
                 let el = document.querySelector(tableName); 
-                const elemToAppendAfter = (el ? el.previousElementSibling : document.querySelector('.hr-before-view'));               
+                const elemToAppendAfter = (el ? el.previousElementSibling : document.querySelector('.searchCl'));               
                 if (el) el.remove(); //if table view exist
                 let newClStr = document.createElement('div');
                 newClStr.classList.add("newClientString");
@@ -414,6 +406,8 @@ function createOrEditClient(string $table, int $idClient = null){
                     prefixBut = "y_"; //!!!! check needed or no
                 }
                 containerClient.innerHTML += elemsToCreate;                
+                /* const main = document.querySelector('.main_content'); */
+                //containerClient.style.order = 1;
                 newClStr.parentNode.insertBefore(containerClient, newClStr.nextSibling);
                 let butSave = document.querySelector('.' + prefixBut + 'btn-submit');
                 butSave.name += '-new';                    
@@ -598,8 +592,11 @@ if ($key){
 }
 
 ?>
+<div class="greetCl">
+    <h3>Клиенты пользователя <?=$_SESSION['NAME']?></h3>
+</div>
 
-<h3>Клиенты пользователя <?=$_SESSION['NAME']?></h3>
+
 <div class="actions_cont">
     <div class="clients-actions">
         <form action="#" method="post">
@@ -617,9 +614,9 @@ if ($key){
             <input type="search" name="search-client" id="searchClInp">
             <input type="submit" name="but-search-cl" id="searchClBut" value="Поиск">
         </form> 
-    </div>    
+    </div>      
 </div>
-<hr class="hr-before-view">
+
 
 <?php
 if (!array_keys($_POST, 'Поиск')) {

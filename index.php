@@ -11,17 +11,18 @@
     ini_set('display_startup_errors', 1);
 
     ?>
+    <link rel="stylesheet" href="css/index.css" type="text/css"/> 
     <link rel="stylesheet" href="css/modal.css" type="text/css"/> 
     <script src="script/actions.js"></script>
     <script src="script/pageacts.js"></script>
     <?php
 
     ///////////////////////////////////////////////////////////
-/*     $conn = DB::getInstance();
+    /* $conn = DB::getInstance(); web2022 12345
     $strUserAdd = "INSERT INTO `users`(`LOGIN`, `PASS`, `NAME`, `EMAIL`) VALUES (:LOGIN, :PASS, :NAME, :EMAIL)";  
-    $arrUserAdd = array(":LOGIN" => "web2022", ":PASS" => password_hash("12345", PASSWORD_BCRYPT), ":NAME" => "Vladimir", ":EMAIL" => "vladimir@mail.com");        
+    $arrUserAdd = array(":LOGIN" => "user", ":PASS" => password_hash("12345", PASSWORD_BCRYPT), ":NAME" => "Vladimir", ":EMAIL" => "vladimir@mail.com");        
     $query = $conn->prepare($strUserAdd);
-    $query->execute($arrUserAdd);  */  
+    $query->execute($arrUserAdd);   */
     //////////////////////////////////////////////////////////
 
     if (isset($_POST['leave_but'])){

@@ -1,6 +1,13 @@
+.main_content{    
+   display: flex;
+   flex-direction: column;    
+   flex: 1 0 auto;  
+   width: fit-content;  
+} 
+
 .contClientForm {
-   position: absolute;
-	margin: auto;                    
+	/* margin: auto;   */ 
+   margin: 0;                          
 }
 .f_clientForm {
    border: 1px solid rgb(84, 55, 165);
@@ -16,6 +23,10 @@
 	-webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
 	-moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
 	box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+   
+   
+   clear: both;
+   order: 1;
 }
 .f_notesInput {
    grid-area: fnotesInput;
@@ -177,11 +188,6 @@ input#searchClBut {
 	width:22px;
 	cursor:pointer;
 }
-.main_content{    
-   margin: 0;
-   height: 87vh;      
-} 
-
 .actions_cont{
    display: flex;
    flex-direction: column;
@@ -197,11 +203,16 @@ input#searchClBut {
    margin: 1%;
 }
 
-.hr_before-view {    
-   margin: 20px 0;
-   padding: 0;
-   height: 10px;
-   border: none;
-   border-top: 1px solid #333;
-   box-shadow: 0 10px 10px -10px #8c8b8b inset;
+@media only screen and (max-device-width: 480px) {
+   .f_clientForm, .y_clientForm {
+     
+      border: 1px solid rgb(84, 55, 165);
+      background: #a5b2b9;   
+      border-radius: 5px;
+      display: block;  
+      -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+      -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+      box-shadow: 0px 0px 50px 10px rgba(0,0,0,1); 
+   
+   }
 }

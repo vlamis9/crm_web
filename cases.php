@@ -23,8 +23,6 @@ require_once('db.php');
 <main class="main_content">
 <?php
 
-updateCasesView();
-
 if (!isset($_SESSION['ID_USER'])) {
     ?>
         <script>
@@ -55,19 +53,10 @@ if (isset($_SESSION['ID_USER'])) {
         </script>
     <?php   
 }
-?>
-
-<div class="new-case">
-        <form action="#" method="post">
-            <input type="submit" class="btn-new-case btn" name="btn-new-case" value="Новое дело">
-        </form>    
-</div>
-<hr class="hr-before-view"/>
-<?php
 
 $key = array_keys($_POST, 'Новое дело');
 if ($key){ 
-    createOrEdirCase();    
+    createOrEditCase();    
 }
 
 $key = array_keys($_POST, 'Сохранить');
@@ -75,6 +64,31 @@ if ($key){
     $pieces = explode("-", array_shift($key));      
     $idCase = array_pop($pieces); //get 'new' or existing idCase    
     addCase($idCase);    
+}
+
+$key = array_keys($_POST, 'Отмена');
+if ($key){ 
+    echo "<meta http-equiv='refresh' content='0'>";      
+}
+
+$key = array_keys($_POST, 'Удалить');
+if ($key){
+    $pieces = explode("-", array_shift($key));
+    $idCase = array_pop($pieces);      
+    delCase($idCase);
+}
+
+$key = array_keys($_POST, 'Редактировать');
+if ($key){
+    $pieces = explode("-", array_shift($key));    
+    $idCase = array_pop($pieces);      
+    createOrEditCase($idCase);
+}
+
+function delCase($idCase){
+    $conn = DB::getInstance();
+    $query = $conn->prepare("DELETE FROM `casesTable` WHERE `ID_CASE` = $idCase");
+    $query->execute();   
 }
 
 function addCase($idCase = null){    
@@ -100,16 +114,18 @@ function addCase($idCase = null){
     }
 }
 
-function createOrEdirCase($idClient = null){
+function createOrEditCase($idCase = null){
     ?>
     <script>
         let elemToAppendAfter = null;
         document.addEventListener('DOMContentLoaded', function () {
             //remove actions buttons while editing
             const contBut = document.querySelectorAll(".but-act-cases");
-            for(let el of contBut) {               
+            if (contBut){
+                for(let el of contBut) {               
                 el.remove();
-            }           
+                } 
+            }                      
             //if no data in DB about cases  
             let el = document.querySelector('.empty-cases');               
             if (el) {
@@ -118,7 +134,50 @@ function createOrEdirCase($idClient = null){
         });
     </script> 
     <?php    
-    if ($idClient){} // case of existing client
+    if ($idCase){ // case of existing client
+        ?>  <script>
+            document.addEventListener('DOMContentLoaded', function () { 
+                const tableName = '.casesTable';                
+                let el = document.querySelector(tableName);
+                const idCase = <?=json_encode($idCase)?>;
+                //save only one row of editing client to show 
+                const classToFind = "tr-"+idCase;                
+                const idRow = el.querySelectorAll(`[class^=${classToFind}]`); //find needed row startsWith tr-idCase
+                //console.log(idRow[0].className);
+                el.querySelectorAll(`tr:not(.${idRow[0].className})`).forEach(n => n.remove()); 
+                let containerCase = document.createElement('div');
+                containerCase.classList.add("contCaseForm");
+                let elemsToCreate = caseFormCreateStr;
+                containerCase.innerHTML += elemsToCreate;                
+                el.parentNode.insertBefore(containerCase, el.nextSibling);    // ins aft 
+                const clNameRow = el.querySelector("." + idRow[0].className);                
+                //set name of client in form field and client category in form field
+                //val of client category is from table on create rows                
+                setCaseFormStartValsExisting(clNameRow.cells[0].textContent, idRow[0].className.split('-')[3]);      
+            });
+        </script> 
+        <?php
+        $strToFillForm = "SELECT * FROM `casesTable` WHERE  `ID_CASE` = $idCase";  
+        $conn = DB::getInstance();
+        $query = $conn->prepare($strToFillForm);
+        $query->execute(); 
+        $list = $query->fetch();
+        
+        unset($list['ID_CASE']);  
+        unset($list['ID_CLIENT']);
+        ?> 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const result = <?=json_encode($list)?>;
+                for (let elem in result){                    
+                    document.querySelector('.' + elem).value = result[elem];                                                
+                }
+                let butSave = document.querySelector('.' + 'btn-submit');
+                butSave.name += <?=json_encode("-$idCase")?>; 
+         });
+        </script>       
+    <?php
+    } 
     else { // new case
     ?>  <script> 
             document.addEventListener('DOMContentLoaded', function () {
@@ -130,9 +189,9 @@ function createOrEdirCase($idClient = null){
                 newCaseForm.classList.add("newCaseForm");
                 newCaseForm.innerHTML += `<p>Добавление нового дела</p>`;
                 newCaseForm.innerHTML += caseFormCreateStr;
-                let elemToAppendAfter = document.querySelector('.hr-before-view');
+                let elemToAppendAfter = document.querySelector('.searchCase');
                 elemToAppendAfter.parentNode.insertBefore(newCaseForm, elemToAppendAfter.nextSibling);
-                let butSave = document.querySelector('.submit_case');
+                let butSave = document.querySelector('.btn-submit');
                 butSave.name += '-new'; 
                 <?php if (!isset($_SESSION['cl-full-names'])) getClientsFullNames(); ?>
                 setCaseFormStartValsNew(<?=json_encode($_SESSION['cl-full-names'])?>, <?=json_encode($_SESSION['id-clType'])?>);
@@ -270,8 +329,32 @@ function updateCasesView($idClient = null, $searchResArrIds = null){
     }
 }
 
+?> 
+
+<div class="greetCl">
+    <h3>Клиенты пользователя <?=$_SESSION['NAME']?></h3>
+</div>
+
+<div class="actions_cont">
+    <div class="cases-actions">
+        <form action="#" method="post">
+            <input type="submit" class="btn-new-case btn" name="btn-new-case" value="Новое дело">
+        </form>    
+    </div>
+    <div class="searchCase">
+        <form action="#" method="post">
+            <input type="search" name="search-case" id="searchCaseInp">
+            <input type="submit" name="but-search-case" id="searchCaseBut" value="Поиск">
+        </form> 
+    </div>      
+</div>
+
+<?php
+
+updateCasesView();
 
 ?>
+
 </main>
 
 <?php

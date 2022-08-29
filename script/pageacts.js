@@ -1,8 +1,10 @@
 function updatePage(isAuth = true, mainUpd = true){
     if (isAuth){
-        const authCont = document.querySelector('.auth_cont'); 
+        const authCont = document.querySelector('.auth_form');
         const inputs = authCont.querySelectorAll('input');
         inputs.forEach((elem) => elem.remove());
+        const divs = authCont.querySelectorAll('div');
+        divs.forEach((elem) => elem.remove());
         const labels = authCont.querySelectorAll('label');
         labels.forEach((elem) => elem.remove());
         const butLeave = document.createElement('input');
@@ -10,14 +12,15 @@ function updatePage(isAuth = true, mainUpd = true){
         butLeave.classList.add('leave_but');
         butLeave.name="leave_but";
         butLeave.value="Выйти";
-        authCont.querySelector('.auth_form').appendChild(butLeave);         
-    } 
-    if (mainUpd)
-    {
-        const btnCont = document.querySelector('.btn_cont');  
-        const btns = btnCont.querySelectorAll('input'); 
-        btns.forEach((elem) => elem.disabled = false);
-    }   
+        authCont.classList.toggle('auth_form_logout');
+        authCont.appendChild(butLeave); 
+        if (mainUpd)
+        {
+            const btnCont = document.querySelector('.btn_cont');  
+            const btns = btnCont.querySelectorAll('input'); 
+            btns.forEach((elem) => elem.disabled = false);
+        }   
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -45,7 +48,18 @@ function setCaseFormStartValsNew(namesArr, catClArr){
     clientSelect.dispatchEvent(new Event('change')); //to call 'onchange' immediately    
 }
 
-function setCaseFormStartValsExisting(){ //TODO
-    const clientSelect = document.querySelector('.id_name_client_select');
+function setCaseFormStartValsExisting(nameCl, catCl){ 
+    //set name of client in form field
+   
+        let nameField = document.querySelector('.id_name_client_select');                     
+        opt = new Option(nameCl, 'val');
+        nameField.append(opt);        
+        nameField.disabled = true;  
+    
+    //set client category in form field
+    let catField = document.querySelector('.cat_client_text');
+    catField.textContent = (catCl== 1 ? "Физическое лицо" : "Юридическое лицо"); 
+       
+    
 }
 

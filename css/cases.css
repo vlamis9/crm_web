@@ -98,6 +98,34 @@ span.span_inner.case_exist{
     cursor:pointer;
  }
 
+/* input#searchCaseInp {
+	height:22px; 
+	line-height:22px; 
+	border:1px solid #666;
+}
+input#searchCaseBut {
+	text-indent:-9999px;
+	line-height:0;
+	border:0;
+	background:url(../img/findCl.png);
+	height:22px;
+	width:22px;
+	cursor:pointer;
+} */
+
+/* .actions_cont{
+    display: flex;
+    flex-direction: column;
+} */
+
+/* .cases-actions{
+    margin: 1%;
+}
+.search_case{
+    margin: 1%;
+} */
+
+
 
 
 
