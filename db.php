@@ -4,12 +4,15 @@ session_start();
 
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
+ini_set('display_startup_errors', 1); 
 define('DB_HOST', 'localhost');
+define('DB_NAME', 'MyDB');
+define('DB_USER', 'phpmyadmin');
+define('DB_PASS', 'suukii999'); 
+/* define('DB_HOST', 'localhost');
 define('DB_NAME', 'x911753i_db');
 define('DB_USER', 'x911753i_db');
-define('DB_PASS', 'cznweb2022$'); 
+define('DB_PASS', 'cznweb2022$');  */
 
 
 /* define('SQL_ARR', array(

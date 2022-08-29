@@ -8,9 +8,9 @@ define('IDF', 'ID_FIZ');
 define('IDY', 'ID_YUR');
 
 //header('Content-type: text/html; charset=utf-8');
-ini_set('error_reporting', E_ALL);
+ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_startup_errors', 1); 
 
 include('header.php');
 require_once('db.php');
@@ -265,7 +265,7 @@ function updateClientsYurView($searchResArrIds = null){
     <?php
 }
 
-function delClient(string $table, int $idToDel, string $fieldName){
+function delClient($table, $idToDel, $fieldName){
     $conn = DB::getInstance();
     $query = $conn->prepare("DELETE FROM $table WHERE $fieldName = $idToDel");
     $query->execute(); 
@@ -275,7 +275,7 @@ function delClient(string $table, int $idToDel, string $fieldName){
     if(isset($_SESSION['id-clType'])) $_SESSION['cl-full-names'] = array();   
 }
 
-function checkForDuplicates(string $table) :bool {
+function checkForDuplicates($table) {
     $conn = DB::getInstance();
     $statement = ""; 
     $catCl = null;
@@ -316,7 +316,7 @@ function checkForDuplicates(string $table) :bool {
 }
 
 
-function createOrEditClient(string $table, int $idClient = null){
+function createOrEditClient($table, $idClient = null){
     ?>
     <script>
         let elemToAppendAfter = null;
@@ -417,7 +417,7 @@ function createOrEditClient(string $table, int $idClient = null){
     } 
 }
 
-function addClientInfoToDB($idClient, string $table){ //!!!! поменять местами параметры
+function addClientInfoToDB($idClient, $table){ //!!!! поменять местами параметры
     $conn = DB::getInstance();
     $query = null;
     if (is_numeric($idClient)){ //update info existing client
@@ -504,7 +504,7 @@ function addClientInfoToDB($idClient, string $table){ //!!!! поменять м
     }       
     }    
 
-function searchCl(string $table, string $searchStr){ //remove code duplication TODO !!!
+function searchCl($table, $searchStr){ //remove code duplication TODO !!!
     $conn = DB::getInstance();
     if ($table == FIZTBL) {
         $catCl = IDF;

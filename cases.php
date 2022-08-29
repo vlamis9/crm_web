@@ -2,7 +2,7 @@
 //header('Content-type: text/html; charset=utf-8');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_startup_errors', 1); 
 
 include('header.php');
 require_once('db.php');
@@ -100,14 +100,14 @@ function addCase($idCase = null){
         $statement = "";
         $_POST['ID_CLIENT'] = $_POST['id_name_client_select'];
         unset($_POST['id_name_client_select']);
-        unset($_POST['submit_case-new']);          
+        unset($_POST['btn-submit-new']);          
         foreach ($_POST as $key => $value) {            
             $statement .= "$key, ";
             $_POST[$key] = (empty($value) ? null : $value); 
         }    
         $statement = substr($statement, 0, -2).")"; //cut off last ", "
         $statementParams = preg_replace('/\w+/', ':$0', $statement); //add ':' for params
-        $statement = $statementStartsWith . $statement . " VALUES (" . $statementParams; 
+        $statement = $statementStartsWith . $statement . " VALUES (" . $statementParams;  
         $query = $conn->prepare($statement);
         $query->execute($_POST);
         echo "<meta http-equiv='refresh' content='0'>";     
