@@ -86,7 +86,7 @@ const f_clientFormCreateStr = `<form class="f_clientForm" action="#" method="pos
                                 </fieldset> 
                                 <div class="f_buttonsInput">
                                     <input type="submit" class="f_btn-submit btn" name="submitInput-fizClient" value="Сохранить" />                                     
-                                    <button class="f_btn-reset btn" name="resetInputF" onClick="window.location.href='clients.php?selCl=fizClient';">"Отмена"</button>                                    
+                                    <input type="submit" class="f_btn-reset btn" name="resetInput-fizClient" value="Отмена" />                                                                  
                                 </div>
                                 </form>`;
 
@@ -203,7 +203,7 @@ const y_clientFormCreateStr = `<form class="y_clientForm" action="#" method="pos
                                 </fieldset> 
                                 <div class="y_buttonsInput">
                                     <input type="submit" class="y_btn-submit btn" name="submitInput-yurClient" value="Сохранить" />
-                                    <button class="y_btn-reset btn" name="resetInputY" onClick="window.location.href='clients.php?selCl=yurClient';">"Отмена"</button>                                    
+                                    <input type="submit" class="y_btn-reset btn" name="resetInput-yurClient" value="Отмена" />
                                 </div>
                             </form>`;
                             

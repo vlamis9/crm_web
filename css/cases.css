@@ -98,7 +98,7 @@ span.span_inner.case_exist{
     cursor:pointer;
  }
 
-/* input#searchCaseInp {
+ input#searchCaseInp {
 	height:22px; 
 	line-height:22px; 
 	border:1px solid #666;
@@ -111,19 +111,33 @@ input#searchCaseBut {
 	height:22px;
 	width:22px;
 	cursor:pointer;
-} */
+} 
 
-/* .actions_cont{
+ .actions_cont{
     display: flex;
     flex-direction: column;
-} */
+} 
 
-/* .cases-actions{
+ .cases-actions{
     margin: 1%;
 }
 .search_case{
     margin: 1%;
-} */
+} 
+
+@media only screen and (max-device-width: 480px) {
+    .case_form {
+      
+       border: 1px solid rgb(84, 55, 165);
+       background: #a5b2b9;   
+       border-radius: 5px;
+       display: block;  
+       -webkit-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+       -moz-box-shadow: 0px 0px 50px 10px rgba(0,0,0,1);
+       box-shadow: 0px 0px 50px 10px rgba(0,0,0,1); 
+    
+    }
+ }
 
 
 

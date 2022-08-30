@@ -20,23 +20,31 @@ function openModal(strToShow){
 }
 
 function checkForEmptyF(){
-    if(!document.querySelector('.f_SURNAME').value){
+    const evtVal = document.activeElement.value;
+    if (evtVal == 'Отмена') window.location.href='clients.php?selCl=fizClient';
+    else {    
+        if(!document.querySelector('.f_SURNAME').value){ 
         const strToShow = `Необходимо указать <br><br> <b>\"Фамилию\"</b> клиента`;
         openModal(strToShow);
         return false;
+        }
     }
-    return true;
+    return true; 
 }
 
 function checkForEmptyY(){
-    result = ((document.querySelector('.y_OGRN').value == "") && (document.querySelector('.y_INN').value == "")); 
-    if (result){
-        const strToShow = `Необходимо указать один из реквизитов: <br><br> <b>\"ОГРН\"</b>
+    const evtVal = document.activeElement.value;
+    if (evtVal == 'Отмена') window.location.href='clients.php?selCl=yurClient';
+    else {    
+        result = ((document.querySelector('.y_OGRN').value == "") && (document.querySelector('.y_INN').value == "")); 
+        if (result){
+            const strToShow = `Необходимо указать один из реквизитов: <br><br> <b>\"ОГРН\"</b>
                                                           <br><br> или
                                                           <br><br>
                                                           <b>\"ИНН\"</b>`;
-        openModal(strToShow);
-        return false;
+            openModal(strToShow);
+            return false;
+        }
     }
     return true;    
 }
